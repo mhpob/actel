@@ -2001,6 +2001,13 @@ compileDetections <- function(path = "detections", start.time = NULL,
               "File '", i, "' is empty, skipping processing.")
         return(NULL) # File is empty, skip to next file
       }
+      if (ncol(aux) < 3) {
+        event(type = c("screen", "warning", "report"),
+              "File '", i, "' could not be recognized as a valid detections",
+              " table (ncol < 3), skipping processing. Are you sure it is a",
+              " comma separated file?")
+        return(NULL)
+      }
     }
     if (file_type == "std") {
       event(type = "debug", "File '", i, "' matches a Standard log.")
