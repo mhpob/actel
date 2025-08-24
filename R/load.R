@@ -1172,7 +1172,7 @@ loadDeployments <- function(input, tz){
             " Please double-check the deployments.")
     }
 
-    if (start_tz != tz | start_tz != tz) {
+    if (start_tz != tz) {
       event(type = c("warning", "screen", "report"),
             "Potential mismatch between deployments time zone",
             " (", start_tz, ") and 'tz' argument (", tz, ")!",
