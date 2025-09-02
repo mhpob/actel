@@ -1172,7 +1172,7 @@ loadDeployments <- function(input, tz){
             " Please double-check the deployments.")
     }
 
-    if (start_tz != tz | start_tz != tz) {
+    if (start_tz != tz) {
       event(type = c("warning", "screen", "report"),
             "Potential mismatch between deployments time zone",
             " (", start_tz, ") and 'tz' argument (", tz, ")!",
@@ -2034,6 +2034,13 @@ compileDetections <- function(path = "detections", start.time = NULL,
         event(type = c("screen", "report"),
               "File '", i, "' is empty, skipping processing.")
         return(NULL) # File is empty, skip to next file
+      }
+      if (ncol(aux) < 3) {
+        event(type = c("screen", "warning", "report"),
+              "File '", i, "' could not be recognized as a valid detections",
+              " table (ncol < 3), skipping processing. Are you sure it is a",
+              " comma separated file?")
+        return(NULL)
       }
     }
     
